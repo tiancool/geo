@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       countries:
-        description: 'GeoIP 国家代码 (默认: cloudflare,cloudfront,cn,facebook,google,netflix,private,telegram,twitter)'
+        description: 'GeoIP 国家代码'
         required: false
         default: 'cloudflare,cloudfront,cn,facebook,google,netflix,private,telegram,twitter'
       sites:
-        description: 'GeoSite 站点代码 (默认: google,facebook,netflix,telegram,twitter,youtube)'
+        description: 'GeoSite 站点代码'
         required: false
         default: 'google,facebook,netflix,telegram,twitter,youtube'
 
