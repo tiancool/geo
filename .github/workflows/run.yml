@@ -44,12 +44,26 @@ jobs:
         echo "GeoIP 处理完成: $COUNTRIES"
         echo "GeoSite 处理完成: $SITES"
         
+        # 显示生成的文件信息
+        echo "📁 生成的文件:"
+        echo "GeoIP 文件:"
+        ls -la ip/
+        echo "GeoSite 文件:"
+        ls -la site/
+        
         # 检查是否有更新
         if [ -d "ip" ] && [ "$(ls -A ip)" ] && [ -d "site" ] && [ "$(ls -A site)" ]; then
-          # 检查文件是否有变化
-          if git diff --quiet ip/ site/ 2>/dev/null; then
+          echo "🔍 检查文件变化..."
+          
+          # 先添加文件到暂存区，然后检查是否有变化
+          git add ip/ site/
+          
+          # 检查暂存区是否有变化
+          if git diff --cached --quiet; then
             echo "✅ 数据无更新，跳过提交"
             echo "NO_UPDATE=true" >> $GITHUB_ENV
+            # 重置暂存区
+            git reset
           else
             echo "🔄 检测到数据更新，准备提交"
             echo "NO_UPDATE=false" >> $GITHUB_ENV
@@ -65,9 +79,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        git add ip/ site/
-        
-        git commit -m "Update - $(date +'%Y-%m-%d %H:%M')"
+        git commit -m "Update Geo Data - $(date +'%Y-%m-%d %H:%M') - Countries: $COUNTRIES, Sites: $SITES"
         git push
         
     - name: Skip commit
