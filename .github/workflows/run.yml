@@ -1,0 +1,77 @@
+name: Geo Data Update
+
+on:
+  schedule:
+    - cron: '0 2 * * 6'  # 每周六凌晨2点
+  workflow_dispatch:
+    inputs:
+      countries:
+        description: 'GeoIP 国家代码 (默认: cloudflare,cloudfront,cn,facebook,google,netflix,private,telegram,twitter)'
+        required: false
+        default: 'cloudflare,cloudfront,cn,facebook,google,netflix,private,telegram,twitter'
+      sites:
+        description: 'GeoSite 站点代码 (默认: google,facebook,netflix,telegram,twitter,youtube)'
+        required: false
+        default: 'google,facebook,netflix,telegram,twitter,youtube'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+        
+    - name: Process Geo Data
+      run: |
+        # 下载 GeoIP 数据
+        curl -L -o geoip.dat https://github.com/Loyalsoldier/geoip/raw/release/geoip.dat
+        
+        # 下载 GeoSite 数据
+        curl -L -o geosite.dat https://github.com/Loyalsoldier/domain-list-custom/releases/latest/download/geosite.dat
+        
+        # 使用预编译的二进制文件
+        chmod +x geo
+        
+        # 处理 GeoIP 数据
+        COUNTRIES="${{ github.event.inputs.countries || 'cloudflare,cloudfront,cn,facebook,google,netflix,private,telegram,twitter' }}"
+        mkdir -p ip
+        ./geo -c $COUNTRIES -o ip/
+        
+        # 处理 GeoSite 数据
+        SITES="${{ github.event.inputs.sites || 'google,facebook,netflix,telegram,twitter,youtube' }}"
+        mkdir -p site
+        ./geo -f geosite.dat -s $SITES -o site/
+        
+        echo "GeoIP 处理完成: $COUNTRIES"
+        echo "GeoSite 处理完成: $SITES"
+        
+        # 检查是否有更新
+        if [ -d "ip" ] && [ "$(ls -A ip)" ] && [ -d "site" ] && [ "$(ls -A site)" ]; then
+          # 检查文件是否有变化
+          if git diff --quiet ip/ site/ 2>/dev/null; then
+            echo "✅ 数据无更新，跳过提交"
+            echo "NO_UPDATE=true" >> $GITHUB_ENV
+          else
+            echo "🔄 检测到数据更新，准备提交"
+            echo "NO_UPDATE=false" >> $GITHUB_ENV
+          fi
+        else
+          echo "❌ 输出目录为空，跳过提交"
+          echo "NO_UPDATE=true" >> $GITHUB_ENV
+        fi
+        
+    - name: Commit to repo
+      if: env.NO_UPDATE == 'false'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        git add ip/ site/
+        
+        git commit -m "Update GeoIP data - $(date +'%Y-%m-%d')"
+        git push
+        
+    - name: Skip commit
+      if: env.NO_UPDATE == 'true'
+      run: |
+        echo "✅ 数据无更新，跳过提交"
+        echo "📊 当前数据已是最新版本" 
