@@ -67,7 +67,7 @@ jobs:
         
         git add ip/ site/
         
-        git commit -m "Update GeoIP data - $(date +'%Y-%m-%d')"
+        git commit -m "Update - $(date +'%Y-%m-%d %H:%M')"
         git push
         
     - name: Skip commit
