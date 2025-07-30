@@ -12,7 +12,7 @@ on:
       sites:
         description: 'GeoSite 站点代码'
         required: false
-        default: 'google,facebook,netflix,telegram,twitter,youtube'
+        default: 'apple,bybit,category-ai-!cn,category-cryptocurrency,category-games,category-media,category-public-tracker,category-social-media-!cn,cloudflare,cloudflare-cn,connectivity-check,disney,facebook,geolocation-!cn,github,google,hbo,instagram,microsoft,netflix,openai,onedrive,paypal,paypal@cn,private,tiktok,telegram,twitter,youtube'
 
 jobs:
   update:
@@ -31,7 +31,7 @@ jobs:
         # 处理数据
         chmod +x geo
         COUNTRIES="${{ github.event.inputs.countries || 'cloudflare,cloudfront,cn,facebook,google,netflix,private,telegram,twitter' }}"
-        SITES="${{ github.event.inputs.sites || 'google,facebook,netflix,telegram,twitter,youtube' }}"
+        SITES="${{ github.event.inputs.sites || 'apple,bybit,category-ai-!cn,category-cryptocurrency,category-games,category-media,category-public-tracker,category-social-media-!cn,cloudflare,cloudflare-cn,connectivity-check,disney,facebook,geolocation-!cn,github,google,hbo,instagram,microsoft,netflix,openai,onedrive,paypal,paypal@cn,private,tiktok,telegram,twitter,youtube' }}"
         
         mkdir -p ip site
         ./geo -c $COUNTRIES -o ip/
