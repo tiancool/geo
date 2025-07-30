@@ -19,76 +19,33 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      actions: read
     steps:
     - uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Process Geo Data
       run: |
-        # 下载 GeoIP 数据
+        # 下载数据
         curl -L -o geoip.dat https://github.com/Loyalsoldier/geoip/raw/release/geoip.dat
-        
-        # 下载 GeoSite 数据
         curl -L -o geosite.dat https://github.com/Loyalsoldier/domain-list-custom/releases/latest/download/geosite.dat
         
-        # 使用预编译的二进制文件
+        # 处理数据
         chmod +x geo
-        
-        # 处理 GeoIP 数据
         COUNTRIES="${{ github.event.inputs.countries || 'cloudflare,cloudfront,cn,facebook,google,netflix,private,telegram,twitter' }}"
-        mkdir -p ip
-        ./geo -c $COUNTRIES -o ip/
-        
-        # 处理 GeoSite 数据
         SITES="${{ github.event.inputs.sites || 'google,facebook,netflix,telegram,twitter,youtube' }}"
-        mkdir -p site
+        
+        mkdir -p ip site
+        ./geo -c $COUNTRIES -o ip/
         ./geo -f geosite.dat -s $SITES -o site/
         
-        echo "GeoIP 处理完成: $COUNTRIES"
-        echo "GeoSite 处理完成: $SITES"
-        
-        # 显示生成的文件信息
-        echo "📁 生成的文件:"
-        echo "GeoIP 文件:"
-        ls -la ip/
-        echo "GeoSite 文件:"
-        ls -la site/
-        
-        # 检查是否有更新
-        if [ -d "ip" ] && [ "$(ls -A ip)" ] && [ -d "site" ] && [ "$(ls -A site)" ]; then
-          echo "🔍 检查文件变化..."
-          
-          # 先添加文件到暂存区，然后检查是否有变化
-          git add ip/ site/
-          
-          # 检查暂存区是否有变化
-          if git diff --cached --quiet; then
-            echo "✅ 数据无更新，跳过提交"
-            echo "NO_UPDATE=true" >> $GITHUB_ENV
-            # 重置暂存区
-            git reset
-          else
-            echo "🔄 检测到数据更新，准备提交"
-            echo "NO_UPDATE=false" >> $GITHUB_ENV
-          fi
+        # 检查更新
+        git add ip/ site/
+        if git diff --cached --quiet; then
+          echo "✅ 数据无更新"
+          git reset
         else
-          echo "❌ 输出目录为空，跳过提交"
-          echo "NO_UPDATE=true" >> $GITHUB_ENV
-        fi
-        
-    - name: Commit to repo
-      if: env.NO_UPDATE == 'false'
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        
-        git commit -m "Update Geo Data - $(date +'%Y-%m-%d %H:%M') - Countries: $COUNTRIES, Sites: $SITES"
-        git push
-        
-    - name: Skip commit
-      if: env.NO_UPDATE == 'true'
-      run: |
-        echo "✅ 数据无更新，跳过提交"
-        echo "📊 当前数据已是最新版本" 
+          echo "🔄 检测到更新，提交中..."
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Update - $(date +'%Y-%m-%d %H:%M')"
+          git push
+        fi 
