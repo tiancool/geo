@@ -2,7 +2,7 @@ name: Geo Data Update
 
 on:
   schedule:
-    - cron: '0 2 * * 6'  # 每周六凌晨2点
+    - cron: '0 1 1 * *'  # 每个月1号凌晨2点
   workflow_dispatch:
     inputs:
       countries:
