@@ -17,8 +17,8 @@ appleworldwidedeveloper.hb-api.omtrdc.net
 appleworldwidedeveloper.sc.omtrdc.net
 p-events-delivery.akamaized.net
 +.apple
-+.beatsblackfridayretails.com
-+.ipod.hk
++.beatsbestdeals.com
++.edu-research.org
 +.apple.be
 +.apple.bg
 +.apple.bs
@@ -126,7 +126,7 @@ p-events-delivery.akamaized.net
 +.itunesradio.com
 +.ituneas.com
 +.itunbes.com
-+.beatsboxingdayuksale.com
++.itun.es
 +.12joursdecadeauxdeitunes.com
 +.12diasderegalosdeitunes.pe
 +.12diasderegalosdeitunes.hn
@@ -276,7 +276,7 @@ p-events-delivery.akamaized.net
 +.ipod.eu
 +.ipod.fr
 +.ipod.gr
-+.beatsbydrdre-headphones.com
++.ipod.hk
 +.ipod.is
 +.ipod.net
 +.ipod.no
@@ -318,7 +318,7 @@ p-events-delivery.akamaized.net
 +.macbookair.jp
 +.macbookair.net
 +.macbookpro.co
-+.beatsbydrdre-officials5.com
++.macbookpro.com
 +.icloud.vn
 +.macbookpro.net
 +.macbookpro.us
@@ -512,6 +512,7 @@ p-events-delivery.akamaized.net
 +.applereach.com
 +.applereach.net
 +.apples-msk.ru
++.appleschoolcontent.com
 +.applescreensavers.com
 +.applescript.info
 +.appleshare.info
@@ -530,6 +531,8 @@ p-events-delivery.akamaized.net
 +.appule.com
 +.appye.com
 +.apyle.com
++.apzones.com
++.axm-usercontent-apple.com
 +.beddit.tv
 +.braeburncapital.com
 +.burstly.net
@@ -564,7 +567,7 @@ p-events-delivery.akamaized.net
 +.dvdstudiopro.us
 +.earpod.net
 +.ecgapp.net
-+.edu-research.org
++.beatsblackfridayretails.com
 +.worldcoinpay.com
 +.emac.in
 +.emagic.de
@@ -651,7 +654,7 @@ p-events-delivery.akamaized.net
 +.webobjects.de
 +.webobjects.eu
 +.webobjects.net
-+.wuxiapple.com
++.beatsblackfridaydeals.net
 +.wwapple.net
 +.www-sms-apple.com
 +.wwwapple.com
@@ -677,7 +680,7 @@ p-events-delivery.akamaized.net
 +.theuab.net
 +.thebeatsheadphonesale.com
 +.thebeatsbydre.net
-+.thebeatsbydre.com
++.beatsboxingdayuksale.com
 +.the-monster-beats.com
 +.takegoto.com
 +.szwinnertechnology.com
@@ -763,12 +766,12 @@ p-events-delivery.akamaized.net
 +.beatsaudiobydre.net
 +.beatsaudios.net
 +.beatsbeatsmonster.com
-+.beatsbestdeals.com
-+.beatsblackfridaydeals.net
 +.apple.ae
-+.itun.es
++.wuxiapple.com
 +.apple.at
-+.macbookpro.com
++.thebeatsbydre.com
++.beatsbydrdre-headphones.com
++.beatsbydrdre-officials5.com
 +.beatsbydrdre-online.com
 +.beatsbydrdre-onsale.com
 +.beatsbydrdre-store.com
@@ -1636,6 +1639,7 @@ cds.apple.com
 cds.apple.com.akadns.net
 cdsassets.apple.com
 cl2-cn.apple.com
+cl2.apple.com.edgekey.net.globalredir.akadns.net
 cl4-cn.apple.com
 clientflow.apple.com
 clientflow.apple.com.akadns.net
@@ -1653,6 +1657,7 @@ experiments.apple.com
 gs-loc-cn.apple.com
 gs-loc.apple.com
 gsp10-ssl-cn.ls.apple.com
+gsp11-cn.ls.apple.com
 gsp12-cn.ls.apple.com
 gsp13-cn.ls.apple.com
 gsp4-cn.ls.apple.com
@@ -1670,8 +1675,6 @@ gspe79-cn-ssl.ls.apple.com
 guzzoni-apple-com.v.aaplimg.com
 guzzoni.apple.com
 guzzoni.smoot.apple.com
-icloud-cdn.icloud.com.akadns.net
-icloud.cdn-apple.com
 images.apple.com.edgekey.net.globalredir.akadns.net
 init-kt.apple.com
 init-p01md-lb.push-apple.com.akadns.net
@@ -1689,6 +1692,7 @@ is-ssl.mzstatic.com-cn-lb.itunes-apple.com.akadns.net
 itunes-apple.com.akadns.net
 itunes.apple.com
 itunesconnect.apple.com
+mensura.cdn-apple.com
 mesu-cdn.apple.com.akadns.net
 mesu-china.apple.com.akadns.net
 mesu.apple.com
@@ -1698,12 +1702,10 @@ oscdn.apple.com
 oscdn.origin-apple.com.akadns.net
 osxapps.itunes.g.aaplimg.com
 pancake.apple.com
-pancake.cdn-apple.com.akadns.net
 pba0.apple.com
 probe.siri.apple.com
 prod-support.apple-support.akadns.net
 publicassets.cdn-apple.com
-reserve-prime.apple.com
 seed-sequoia.siri.apple.com
 seed-swallow.siri.apple.com
 seed.siri.apple.com
@@ -1749,16 +1751,6 @@ xp.apple.com
 +.iadsdk.apple.com
 +.iad.apple.com
 +.qwapi.com
-certs-lb.apple.com.akadns.net
-certs.apple.com
-crl-lb.apple.com.akadns.net
-crl.apple.com
-ocsp-lb.apple.com.akadns.net
-ocsp.apple.com
-ocsp2-lb.apple.com.akadns.net
-ocsp2.apple.com
-valid.apple.com
-valid.origin-apple.com.akadns.net
 +.beats1.cn
 +.beats1.com.cn
 +.beats2.com.cn
@@ -1769,6 +1761,7 @@ valid.origin-apple.com.akadns.net
 +.apple-icloud.cn
 +.appleicloud.cn
 +.icloud-apple.cn
++.icloud-content.com.cn
 +.icloud.cn
 +.icloud.com.cn
 +.icloud.net.cn
@@ -1782,3 +1775,11 @@ valid.origin-apple.com.akadns.net
 +.researchkit.com.cn
 +.swiftui.cn
 +.swiftui.com.cn
+certs-lb.apple.com.akadns.net
+certs.apple.com
+crl-lb.apple.com.akadns.net
+crl.apple.com
+ocsp.apple.com
+ocsp2.apple.com
+valid.apple.com
+valid.origin-apple.com.akadns.net
